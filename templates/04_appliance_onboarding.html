@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set up your household - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<style>
+  .onboard-shell{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:40px 20px;}
+  .onboard-box{width:100%; max-width:680px;}
+  .onboard-head{text-align:center; margin-bottom:8px;}
+  .onboard-head .tag{display:inline-block; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--navy-700); background:#eaf1f8; padding:4px 12px; border-radius:20px; margin-bottom:14px;}
+  .onboard-head h2{font-size:1.35rem;}
+  .onboard-head p{color:var(--text-muted); font-size:.87rem; margin-top:8px;}
+</style>
+</head>
+<body>
+
+<div class="onboard-shell">
+  <div class="onboard-box">
+
+    <div class="onboard-head">
+      <span class="tag">Step 2 of 2 &middot; Account setup</span>
+      <h2>Which appliances do you have at home?</h2>
+      <p>This is a one-time step. Select what applies so your recommendations are relevant to your household rather than generic advice.</p>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" style="width:100%;"></div></div>
+
+    <div class="panel">
+      <div class="appliance-grid" id="appliance-grid">
+        <label class="appliance-tile" data-appliance="Air conditioner"><input type="checkbox"> Air conditioner</label>
+        <label class="appliance-tile" data-appliance="Water heater"><input type="checkbox"> Water heater</label>
+        <label class="appliance-tile" data-appliance="Electric stove"><input type="checkbox"> Electric stove</label>
+        <label class="appliance-tile" data-appliance="Television"><input type="checkbox"> Television</label>
+        <label class="appliance-tile" data-appliance="Washing machine"><input type="checkbox"> Washing machine</label>
+        <label class="appliance-tile" data-appliance="Refrigerator"><input type="checkbox"> Refrigerator</label>
+        <label class="appliance-tile" data-appliance="Electric water pump"><input type="checkbox"> Electric water pump</label>
+        <label class="appliance-tile" data-appliance="Home office setup"><input type="checkbox"> Home office setup</label>
+      </div>
+
+      <div class="field-group" style="margin-top:20px;">
+        <label class="field-label">Household size</label>
+        <select id="household-size">
+          <option value="" selected disabled>Select household size</option>
+          <option value="1-2">1 - 2 people</option>
+          <option value="3-4">3 - 4 people</option>
+          <option value="5+">5 or more people</option>
+        </select>
+      </div>
+
+      <div class="form-error" id="form-error" style="display:none; color:var(--danger,#c0392b); font-size:.82rem; margin-top:14px;"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:22px;">
+        <a href="#" id="btn-skip" style="font-size:.83rem; color:var(--text-muted);">Skip for now</a>
+        <button type="button" id="btn-continue" class="btn btn-primary">Save and continue</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/appliance_onboard.js') }}"></script>
+</body>
+</html>

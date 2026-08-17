@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="brand">SmartElec<span>Consumption analysis</span></div>
+    <div class="nav-section">Overview</div>
+    <a href="07_dashboard.html">Dashboard</a>
+    <div class="nav-section">Data</div>
+    <a href="05_upload_bill.html">Upload bill / SMS</a>
+    <a href="10_reports.html">Reports</a>
+    <div class="nav-section">Insights</div>
+    <a href="08_ai_prediction.html">AI prediction</a>
+    <a href="09_recommendations.html">Recommendations</a>
+    <div class="nav-section">Account</div>
+    <a href="11_appliance_profile.html">Appliance profile</a>
+    <a href="12_security.html" class="active">Security</a>
+    <div class="nav-bottom">
+      <a href="02_login.html">Log out</a>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>Account security</h1>
+        <div class="crumb">Account &rsaquo; Security</div>
+      </div>
+      <span class="acct-chip" id="acct-chip">--</span>
+    </div>
+
+    <div class="app-content" style="max-width:820px;">
+
+      <div class="panel">
+        <h2>Password</h2>
+        <div class="panel-desc">Change the password used to log in.</div>
+        <div class="section-split" style="grid-template-columns:1fr 1fr;">
+          <div class="field-group">
+            <label class="field-label">Current password</label>
+            <input type="password" id="current_password" placeholder="Enter current password">
+          </div>
+          <div class="field-group">
+            <label class="field-label">New password</label>
+            <input type="password" id="new_password" placeholder="At least 8 characters">
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Confirm new password</label>
+          <input type="password" id="confirm_password" placeholder="Re-enter new password" style="max-width:260px;">
+        </div>
+        <div class="form-error" id="pw-form-error" style="display:none; color:var(--danger,#c0392b); font-size:.82rem; margin-bottom:10px;"></div>
+        <div class="form-success" id="pw-form-success" style="display:none; color:var(--success,#10B981); font-size:.82rem; margin-bottom:10px;"></div>
+        <button type="button" id="btn-update-password" class="btn btn-primary btn-sm">Update password</button>
+      </div>
+
+      <div class="panel">
+        <h2>Two-step verification</h2>
+        <div class="panel-desc">A one-time code is required every time you log in on this device.</div>
+        <table class="data-table">
+          <tbody>
+            <tr><th style="width:36%;">Status</th><td><span class="tag tag-success">Enabled (required on every login)</span></td></tr>
+            <tr><th>Registered number</th><td id="registered-mobile">--</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>Recent login activity</h2>
+        <table class="data-table">
+          <thead><tr><th>Date &amp; time</th><th>Device</th><th>Result</th></tr></thead>
+          <tbody id="login-log-tbody">
+            <tr><td colspan="3" style="text-align:center; color:var(--text-faint); padding:24px 6px;">No login activity recorded yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>Data and privacy</h2>
+        <div class="note-navy">All your data (account, appliances, confirmed bills) is stored only in this browser for this prototype — nothing is uploaded to a server.</div>
+        <button type="button" id="btn-download-data" class="btn btn-outline btn-sm">Download my data</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/security.js') }}"></script>
+</body>
+</html>

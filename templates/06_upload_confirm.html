@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm extracted data - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="brand">SmartElec<span>Consumption analysis</span></div>
+    <div class="nav-section">Overview</div>
+    <a href="07_dashboard.html">Dashboard</a>
+    <div class="nav-section">Data</div>
+    <a href="05_upload_bill.html" class="active">Upload bill / SMS</a>
+    <a href="10_reports.html">Reports</a>
+    <div class="nav-section">Insights</div>
+    <a href="08_ai_prediction.html">AI prediction</a>
+    <a href="09_recommendations.html">Recommendations</a>
+    <div class="nav-section">Account</div>
+    <a href="11_appliance_profile.html">Appliance profile</a>
+    <a href="12_security.html">Security</a>
+    <div class="nav-bottom">
+      <a href="02_login.html">Log out</a>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>Confirm extracted data</h1>
+        <div class="crumb">Data &rsaquo; Upload &rsaquo; Confirm</div>
+      </div>
+      <span class="acct-chip" id="acct-chip">--</span>
+    </div>
+
+    <div class="app-content" style="max-width:760px;">
+
+      <div class="panel">
+        <h2>Step 2 &middot; Check the figures below</h2>
+        <div class="panel-desc">The system has read the following values from your uploaded image. Update anything that looks incorrect before saving — nothing is saved until you confirm.</div>
+
+        <div class="note-amber" id="confidence-note">
+          Confidence: <span id="confidence-tag">--</span>
+          <span id="accuracy-note-text"></span>
+        </div>
+
+        <div class="form-error" id="confirm-error" style="display:none; color:var(--danger,#c0392b); font-size:.82rem; margin:10px 0;"></div>
+
+        <div class="section-split">
+          <div>
+            <table class="data-table">
+              <tbody>
+                <tr><th style="width:46%;">Source</th><td id="source-label">--</td></tr>
+                <tr><th>Billing period</th><td><input type="text" id="billing-period" placeholder="e.g. 22 Jun 2024 - 23 Jul 2024" style="max-width:220px;"></td></tr>
+                <tr><th>Units consumed</th><td><input type="text" id="kwh-value" placeholder="e.g. 248" style="max-width:160px;"> kWh</td></tr>
+                <tr><th>Bill amount</th><td>LKR <input type="text" id="lkr-value" placeholder="e.g. 9420" style="max-width:160px;"></td></tr>
+                <tr><th>Account number</th><td id="account-number-display">--</td></tr>
+              </tbody>
+            </table>
+
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button type="button" id="btn-confirm" class="btn btn-primary">Confirm and save</button>
+              <a href="05_upload_bill.html" id="btn-reupload" class="btn btn-outline">Re-upload image</a>
+            </div>
+          </div>
+
+          <div style="border:1px solid var(--border); border-radius:8px; padding:14px; background:#fafbfc;">
+            <div style="font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--text-muted); margin-bottom:8px;">Uploaded file</div>
+            <div style="border:1px solid var(--border); border-radius:6px; padding:34px 10px; text-align:center; font-size:.78rem; color:var(--text-faint); background:#fff;" id="thumb-filename">
+              --
+            </div>
+            <div style="font-size:.72rem; color:var(--text-faint); margin-top:8px;">This file is only held in your browser for this session — nothing is uploaded to a server in this prototype.</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/confirm.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-side">
+    <span class="tag">Secure access</span>
+    <h1>Log in to view your<br>electricity dashboard.</h1>
+    <p>Your account is protected with password and one-time code verification. Only you can view your usage history and uploaded bills.</p>
+
+    <div class="step-list">
+      <div class="step-row"><span class="step-num">1</span><span>Enter your username and password</span></div>
+      <div class="step-row"><span class="step-num">2</span><span>Confirm the one-time code sent to your phone</span></div>
+      <div class="step-row"><span class="step-num">3</span><span>You're in - view your dashboard</span></div>
+    </div>
+  </div>
+
+  <div class="auth-main">
+    <div class="auth-box">
+      <h2>Log in to your account</h2>
+      <p class="lede">Enter your details below.</p>
+
+      <form id="login-form" novalidate>
+        <div class="field-group">
+          <label class="field-label">Username or account number</label>
+          <input type="text" id="username" placeholder="e.g. kumara_h or CEB-XXXXXXX">
+          <div class="field-error" id="username-error"></div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <input type="password" id="password" placeholder="Enter your password">
+          <div class="field-error" id="password-error"></div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <label style="display:flex; align-items:center; gap:7px; font-size:.82rem; color:var(--text-muted);">
+            <input type="checkbox" id="remember-me" style="width:auto;"> Remember this device
+          </label>
+          <a href="#" style="font-size:.82rem;">Forgot password?</a>
+        </div>
+
+        <div class="form-error" id="form-error" style="display:none; color:var(--danger,#c0392b); font-size:.82rem; margin-bottom:12px;"></div>
+
+        <button type="button" id="btn-login" class="btn btn-primary btn-block">Continue</button>
+      </form>
+
+      <div class="divider-row"><div class="line"></div><span>or</span><div class="line"></div></div>
+
+      <div class="foot-link">Don't have an account? <a href="01_register.html">Create one</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

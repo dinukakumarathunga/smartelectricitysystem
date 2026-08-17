@@ -1,0 +1,54 @@
+# ── Environment / secrets ─────────────────────────────────────
+.env
+*.env.local
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ── Virtual environments ─────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Flask / instance data ────────────────────────────────────
+instance/
+.webassets-cache
+
+# ── Database ─────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+test.db
+
+# ── Uploads (never commit real bill images) ──────────────────
+uploads/temp/*
+!uploads/temp/.gitkeep
+# sample_bills/ IS meant to be committed if it only contains
+# scrubbed/test images — but double-check before adding any real
+# bill photos here, since they can contain names, addresses, and
+# account numbers (see the privacy note on 05_upload_bill.html).
+
+# ── ML models ────────────────────────────────────────────────
+# Uncomment if the trained .pkl files are large or you'd rather
+# distribute them separately (e.g. via Git LFS or a release asset)
+# rather than committing them directly:
+# ml_models/*.pkl
+
+# ── Editor / OS cruft ────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ── Test / coverage ──────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/

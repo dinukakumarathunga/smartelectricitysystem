@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="brand">SmartElec<span>Consumption analysis</span></div>
+    <div class="nav-section">Overview</div>
+    <a href="07_dashboard.html">Dashboard</a>
+    <div class="nav-section">Data</div>
+    <a href="05_upload_bill.html">Upload bill / SMS</a>
+    <a href="10_reports.html" class="active">Reports</a>
+    <div class="nav-section">Insights</div>
+    <a href="08_ai_prediction.html">AI prediction</a>
+    <a href="09_recommendations.html">Recommendations</a>
+    <div class="nav-section">Account</div>
+    <a href="11_appliance_profile.html">Appliance profile</a>
+    <a href="12_security.html">Security</a>
+    <div class="nav-bottom">
+      <a href="02_login.html">Log out</a>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>Usage reports</h1>
+        <div class="crumb">Data &rsaquo; Reports</div>
+      </div>
+      <span class="acct-chip" id="acct-chip">--</span>
+    </div>
+
+    <div class="app-content">
+
+      <div class="panel">
+        <h2>Generate a report</h2>
+        <div class="panel-desc">Print or export a summary of your confirmed bills for a selected period.</div>
+
+        <div style="display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap;">
+          <div class="field-group" style="margin:0; min-width:160px;">
+            <label class="field-label">Year</label>
+            <select id="report-year">
+              <option value="">All time</option>
+            </select>
+          </div>
+          <div class="field-group" style="margin:0; min-width:160px;">
+            <label class="field-label">Format</label>
+            <select id="report-format">
+              <option value="pdf" selected>PDF summary (print)</option>
+              <option value="csv">CSV data export</option>
+            </select>
+          </div>
+          <button type="button" id="btn-export" class="btn btn-primary">Download report</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Monthly summary table</h2>
+        <div class="note-navy" id="summary-line" style="margin-bottom:16px;">No confirmed bills yet.</div>
+        <table class="data-table">
+          <thead><tr><th>Month</th><th>Units consumed</th><th>Amount</th><th>vs. average</th></tr></thead>
+          <tbody id="summary-tbody">
+            <tr><td colspan="4" style="text-align:center; color:var(--text-faint); padding:24px 6px;">No confirmed bills yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/reports.js') }}"></script>
+</body>
+</html>

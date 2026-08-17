@@ -1,0 +1,30 @@
+# ── Core web framework ──────────────────────────────────────
+Flask==3.0.3
+python-dotenv==1.0.1
+
+# ── Database ─────────────────────────────────────────────────
+Flask-SQLAlchemy==3.1.1
+PyMySQL==1.1.1              # MySQL driver — swap for psycopg2-binary if using Postgres
+
+# ── Auth / security ──────────────────────────────────────────
+Flask-WTF==1.2.2            # CSRF protection on state-changing POST routes
+Werkzeug==3.0.4              # password hashing (generate_password_hash / check_password_hash)
+
+# ── OTP delivery ─────────────────────────────────────────────
+# Pick whichever channel utils/login_utils.py actually sends through.
+# Uncomment the one you use; both are here since the prototype's OTP
+# note said "no real SMS/email gateway" and left the choice open.
+# twilio==9.3.2              # for SMS OTP
+# Flask-Mail==0.10.0          # for email OTP
+
+# ── OCR (bill / SMS screenshot extraction) ──────────────────
+pytesseract==0.3.13          # wraps the system tesseract binary — install tesseract-ocr separately
+Pillow>=10.4.0                # image loading/preprocessing before OCR
+
+# ── AI prediction (loads the .pkl models from ml_models/) ───
+#scikit-learn==1.5.2
+#numpy==2.1.1
+#joblib==1.4.2                 # standard way to load sklearn .pkl files
+
+# ── Dev / testing ────────────────────────────────────────────
+pytest==8.3.3

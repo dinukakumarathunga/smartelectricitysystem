@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI prediction - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="brand">SmartElec<span>Consumption analysis</span></div>
+    <div class="nav-section">Overview</div>
+    <a href="07_dashboard.html">Dashboard</a>
+    <div class="nav-section">Data</div>
+    <a href="05_upload_bill.html">Upload bill / SMS</a>
+    <a href="10_reports.html">Reports</a>
+    <div class="nav-section">Insights</div>
+    <a href="08_ai_prediction.html" class="active">AI prediction</a>
+    <a href="09_recommendations.html">Recommendations</a>
+    <div class="nav-section">Account</div>
+    <a href="11_appliance_profile.html">Appliance profile</a>
+    <a href="12_security.html">Security</a>
+    <div class="nav-bottom">
+      <a href="02_login.html">Log out</a>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>AI usage prediction</h1>
+        <div class="crumb">Insights &rsaquo; AI prediction</div>
+      </div>
+      <span class="acct-chip" id="acct-chip">--</span>
+    </div>
+
+    <div class="app-content">
+
+      <div class="note-navy" id="prediction-banner">This estimate is generated from your own historical usage pattern using a simple regression model. It is not a guarantee - actual usage may vary by 10-20%.</div>
+
+      <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);" id="prediction-stats">
+        <div class="stat-card">
+          <div class="stat-label">Predicted next month</div>
+          <div class="stat-value" id="pred-kwh-value">-- kWh</div>
+          <div class="stat-sub" style="color:var(--text-muted);">for next billing period</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Estimated bill</div>
+          <div class="stat-value" id="pred-lkr-value">LKR --</div>
+          <div class="stat-sub" style="color:var(--text-muted);">at current tariff</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Model accuracy so far</div>
+          <div class="stat-value" id="pred-confidence-value">--%</div>
+          <div class="stat-sub" id="pred-confidence-sub" style="color:var(--text-muted);">--</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Actual vs. predicted usage</h2>
+        <div class="panel-desc">Comparing what the model predicted against what was later confirmed from your uploaded bills.</div>
+        <canvas id="predChart" height="100"></canvas>
+      </div>
+
+      <div class="section-split">
+        <div class="panel">
+          <h2>How this estimate was calculated</h2>
+          <table class="data-table">
+            <tbody>
+              <tr><th style="width:44%;">Method</th><td>Linear regression on past months</td></tr>
+              <tr><th>Data points used</th><td id="stat-months">-- confirmed bills</td></tr>
+              <tr><th>Seasonal adjustment</th><td>Not applied in this prototype</td></tr>
+              <tr><th>Peak month so far</th><td id="stat-peak">--</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>Confidence note</h2>
+          <p style="font-size:.85rem; color:var(--text-muted); line-height:1.7;">Prediction accuracy is lower for households with irregular usage patterns, such as travel or seasonal appliance use. Continue uploading bills each month to improve the estimate over time.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/prediction.js') }}"></script>
+</body>
+</html>

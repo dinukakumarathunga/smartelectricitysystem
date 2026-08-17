@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recommendations - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="brand">SmartElec<span>Consumption analysis</span></div>
+    <div class="nav-section">Overview</div>
+    <a href="07_dashboard.html">Dashboard</a>
+    <div class="nav-section">Data</div>
+    <a href="05_upload_bill.html">Upload bill / SMS</a>
+    <a href="10_reports.html">Reports</a>
+    <div class="nav-section">Insights</div>
+    <a href="08_ai_prediction.html">AI prediction</a>
+    <a href="09_recommendations.html" class="active">Recommendations</a>
+    <div class="nav-section">Account</div>
+    <a href="11_appliance_profile.html">Appliance profile</a>
+    <a href="12_security.html">Security</a>
+    <div class="nav-bottom">
+      <a href="02_login.html">Log out</a>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>Recommendations</h1>
+        <div class="crumb">Insights &rsaquo; Recommendations</div>
+      </div>
+      <span class="acct-chip" id="acct-chip">--</span>
+    </div>
+
+    <div class="app-content">
+
+      <div class="note-amber" id="banner-message">Suggestions below are filtered to match the appliances in your household profile.</div>
+
+      <div class="section-split">
+        <div>
+          <div class="panel">
+            <h2>Suggested actions</h2>
+            <div class="panel-desc">Based on your appliance profile and how your latest bill compares to your average.</div>
+
+            <div id="recs-list">
+              <div class="rec-card">
+                <div class="rec-title">--</div>
+                <div class="rec-body">Recommendations will appear here once enough usage data has been collected.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel">
+            <h2>If all suggestions are followed</h2>
+            <div style="font-size:1.5rem; font-weight:700; color:var(--teal-700); font-family:'Poppins',sans-serif;" id="saving-total-kwh">-- kWh</div>
+            <div style="font-size:.78rem; color:var(--text-muted); margin-bottom:14px;" id="saving-total-lkr">estimated saving next month, around LKR --</div>
+            <div class="note-teal">These are estimates based on your own usage history, not guaranteed results.</div>
+          </div>
+
+          <div class="panel">
+            <h2>Your appliance profile</h2>
+            <div class="panel-desc">Recommendations are filtered to appliances you've told us you own.</div>
+            <div id="appliance-chips" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+            <a href="11_appliance_profile.html" class="btn btn-outline btn-sm" style="margin-top:14px;">Edit appliance profile</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/recommendations.js') }}"></script>
+</body>
+</html>

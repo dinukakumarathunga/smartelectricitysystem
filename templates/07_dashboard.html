@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Secure Smart Electricity Consumption Analysis System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="brand">SmartElec<span>Consumption analysis</span></div>
+    <div class="nav-section">Overview</div>
+    <a href="07_dashboard.html" class="active">Dashboard</a>
+    <div class="nav-section">Data</div>
+    <a href="05_upload_bill.html">Upload bill / SMS</a>
+    <a href="10_reports.html">Reports</a>
+    <div class="nav-section">Insights</div>
+    <a href="08_ai_prediction.html">AI prediction</a>
+    <a href="09_recommendations.html">Recommendations</a>
+    <div class="nav-section">Account</div>
+    <a href="11_appliance_profile.html">Appliance profile</a>
+    <a href="12_security.html">Security</a>
+    <div class="nav-bottom">
+      <a href="02_login.html">Log out</a>
+    </div>
+  </nav>
+
+  <div class="app-main">
+    <div class="app-topbar">
+      <div>
+        <h1>My electricity dashboard</h1>
+        <div class="crumb">Overview</div>
+      </div>
+      <span class="acct-chip" id="acct-chip">--</span>
+    </div>
+
+    <div class="app-content">
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-label">This month's usage</div>
+          <div class="stat-value" id="stat-kwh">-- kWh</div>
+          <div class="stat-sub" id="stat-kwh-sub" style="color:var(--text-muted);">--</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Estimated bill</div>
+          <div class="stat-value" id="stat-lkr">LKR --</div>
+          <div class="stat-sub" style="color:var(--text-muted);">based on your latest confirmed bill</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Predicted next month</div>
+          <div class="stat-value" id="stat-predict">-- kWh</div>
+          <div class="stat-sub" id="stat-predict-sub" style="color:var(--text-muted);">&plusmn; 10-20% accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Personal average</div>
+          <div class="stat-value" id="stat-avg">-- kWh</div>
+          <div class="stat-sub" id="stat-avg-sub" style="color:var(--text-muted);">--</div>
+        </div>
+      </div>
+
+      <div class="section-split">
+        <div>
+          <div class="panel">
+            <h2>Monthly consumption vs. your average</h2>
+            <div class="panel-desc" id="chart-desc">Your usage chart will appear here once bills have been uploaded.</div>
+            <canvas id="usageChart" height="110"></canvas>
+          </div>
+
+          <div class="panel">
+            <h2>Recent bill uploads</h2>
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Source</th><th>Units</th><th>Status</th></tr></thead>
+              <tbody id="recent-bills-tbody">
+                <tr><td colspan="4" style="text-align:center; color:var(--text-faint); padding:24px 6px;">No bills yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel">
+            <h2>Prediction snapshot</h2>
+            <div class="panel-desc">Full breakdown on the AI prediction page.</div>
+            <div style="font-size:1.6rem; font-weight:700; color:var(--navy-900); font-family:'Poppins',sans-serif;" id="pred-snapshot-kwh">-- kWh</div>
+            <div style="font-size:.78rem; color:var(--text-muted); margin-bottom:14px;" id="pred-snapshot-sub">upload bills to unlock this</div>
+            <a href="08_ai_prediction.html" class="btn btn-outline btn-sm">View full prediction</a>
+          </div>
+
+          <div class="panel">
+            <h2>Top recommendation</h2>
+            <div class="rec-card" id="top-rec-card">
+              <div class="rec-title">--</div>
+              <div class="rec-body">Recommendations will appear here once enough usage data has been collected.</div>
+            </div>
+            <a href="09_recommendations.html" class="btn btn-outline btn-sm">View all recommendations</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/api-client.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
