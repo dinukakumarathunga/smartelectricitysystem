@@ -28,3 +28,6 @@ Pillow>=10.4.0                # image loading/preprocessing before OCR
 
 # ── Dev / testing ────────────────────────────────────────────
 pytest==8.3.3
+
+gunicorn==22.0.0
+psycopg2-binary==2.9.9
